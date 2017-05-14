@@ -18,7 +18,7 @@ class ftController(ftProject):
 		ftSettings = sublime.load_settings('Preferences.sublime-settings')
 		ftSettings.set('ftActiveProject', name)
 		sublime.save_settings('Preferences.sublime-settings')
-		# test
+		# test 2
 		self.moveToFront(name)
 		sublime.status_message("Active project set to: " + name)
 
