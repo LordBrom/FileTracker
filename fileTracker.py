@@ -192,7 +192,7 @@ class ftShowMainManuOldCommand(sublime_plugin.TextCommand, ftController):
 class ftShowMainManuCommand(sublime_plugin.TextCommand, ftController):
 	def run(self, edit):
 		self.projects = self.getProjects()
-
+		print('test')
 		menuItems = []
 
 		if len(self.projects) == 0:
