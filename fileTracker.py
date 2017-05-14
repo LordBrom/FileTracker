@@ -192,7 +192,6 @@ class ftShowMainManuOldCommand(sublime_plugin.TextCommand, ftController):
 class ftShowMainManuCommand(sublime_plugin.TextCommand, ftController):
 	def run(self, edit):
 		self.projects = self.getProjects()
-		print('test')
 		menuItems = []
 
 		if len(self.projects) == 0:
@@ -232,18 +231,20 @@ class ftShowMainManuCommand(sublime_plugin.TextCommand, ftController):
 	def do_action(self, index):
 		if index == -1:
 			return
+		
 		elif sublime.FT_MENU_ITEMS[index] == "Set active project":
 			self.setActiveProject(self.selectedName)
+		
 		elif sublime.FT_MENU_ITEMS[index] == "List files...":
 			print('')
+			sublime.active_window().show_quick_panel(list(self.getProjectFileFieldList(self.selectedName, "filePath")), self.do_delete)
 			# sublime.active_window().run_command('ft_list_projects')
+		
 		elif sublime.FT_MENU_ITEMS[index] == "Rename project...":
-			print('')
-			# sublime.active_window().run_command('ft_add_project')
+			sublime.active_window().show_input_panel("enter new project name:", self.selectedName, self.do_rename, None, None)
+		
 		elif sublime.FT_MENU_ITEMS[index] == "Delete project...":
 			sublime.active_window().show_quick_panel(list(["No, keep the project", "Yes, delete the project"]), self.do_delete)
-		elif sublime.FT_MENU_ITEMS[index] == "Rename project...":
-			sublime.active_window().run_command('ft_rename_project')
 
 	def do_delete(self, index):
 		if index == -1:
@@ -252,3 +253,9 @@ class ftShowMainManuCommand(sublime_plugin.TextCommand, ftController):
 			return
 		else:
 			self.deleteProject(self.selectedName)
+
+	def do_rename(self, newName):
+		if newName == "":
+			return
+		else:
+			self.renameProject(self.selectedName, newName)

@@ -64,3 +64,11 @@ class ftFile():
 
 		return project
 
+	def getFileFieldList(self, project, fileField):
+		result = []
+		fileList = project["fileList"]
+
+		for file in fileList:
+			result.append(file[fileField])
+
+		return result

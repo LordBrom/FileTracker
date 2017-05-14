@@ -8,10 +8,17 @@ from FileTracker.ftFile import ftFile
 
 class ftProject(ftFile):
 	def getProject(self, projectName):
+		print('test')
+
 		projects = self.getProjects()
 
+
+
+		print(projects)
+
 		for project in projects:
-			if Project["projectName"] == projectName:
+			print(project)
+			if project["projectName"] == projectName:
 				return project
 
 		return ""
@@ -145,3 +152,13 @@ class ftProject(ftFile):
 
 		ftProjectSettings.set("ftProjects", ftProjects)
 		sublime.save_settings('ftProjects.sublime-settings')
+
+	def getProjectFileFieldList(self, projectName, fileField):
+		project = self.getProject(projectName)
+
+		if project == "":
+			return
+		else:
+			fileFieldList = self.getFileFieldList(project, fileField)
+
+			return fileFieldList
