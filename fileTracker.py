@@ -18,7 +18,7 @@ class ftController(ftProject):
 		ftSettings = sublime.load_settings('Preferences.sublime-settings')
 		ftSettings.set('ftActiveProject', name)
 		sublime.save_settings('Preferences.sublime-settings')
-		# test
+
 		self.moveToFront(name)
 		sublime.status_message("Active project set to: " + name)
 
@@ -192,7 +192,7 @@ class ftShowMainManuOldCommand(sublime_plugin.TextCommand, ftController):
 class ftShowMainManuCommand(sublime_plugin.TextCommand, ftController):
 	def run(self, edit):
 		self.projects = self.getProjects()
-
+		print("test")
 		menuItems = []
 
 		if len(self.projects) == 0:
