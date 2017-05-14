@@ -1,0 +1,6 @@
+[
+	{ "keys": ["ctrl+alt+f","ctrl+alt+f"], "command": "ft_show_main_manu"          },
+	{ "keys": ["ctrl+alt+f","ctrl+alt+g"], "command": "ft_list_projects"          },
+	{ "keys": ["ctrl+alt+f","ctrl+alt+a"], "command": "ft_add_project"          },
+	{ "keys": ["ctrl+alt+f","ctrl+alt+s"], "command": "ft_set_active_project"          }
+]

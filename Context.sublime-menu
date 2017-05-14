@@ -1,0 +1,12 @@
+[{
+    "id": "filetracker",
+    "caption": "File Tracker",
+    "children":
+    	[
+        { "caption": "-" },
+		{ "caption": "File Tracker Placeholder", "command": "ft_track" },
+		{ "command": "open_file", "args": {"file": "${packages}/User/ftProjects.sublime-settings"},"caption": "File Tracker Projects – User" },
+		{ "command": "open_file", "args": {"file": "${packages}/User/Preferences.sublime-settings"},"caption": "Preferences – User" },
+		{ "caption": "-", "id": "end" }
+	]
+}]
