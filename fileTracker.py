@@ -9,7 +9,6 @@ from FileTracker.ftProject import ftProject
 sublime.FT_CURRENT_PROJECT = ""
 
 sublime.FT_MENU_ITEMS = ["Set active project", "List files...", "Rename project...", "Delete project..."]
-sublime.FT_NO_YES = ["No", "Yes"]
 
 
 class ftController(ftProject):
@@ -156,7 +155,7 @@ class ftDeleteProjectCommand(sublime_plugin.TextCommand, ftController):
 			return
 		else:
 			self.selectedName = self.projectNames[index]
-			sublime.active_window().show_quick_panel(list(sublime.FT_NO_YES), self.do_delete)
+			sublime.active_window().show_quick_panel(list(["No, keep the project", "Yes, delete the project"]), self.do_delete)
 
 	def do_delete(self, index):
 		if index == -1:
@@ -242,7 +241,7 @@ class ftShowMainManuCommand(sublime_plugin.TextCommand, ftController):
 			print('')
 			# sublime.active_window().run_command('ft_add_project')
 		elif sublime.FT_MENU_ITEMS[index] == "Delete project...":
-			sublime.active_window().show_quick_panel(list(sublime.FT_NO_YES), self.do_delete)
+			sublime.active_window().show_quick_panel(list(["No, keep the project", "Yes, delete the project"]), self.do_delete)
 		elif sublime.FT_MENU_ITEMS[index] == "Rename project...":
 			sublime.active_window().run_command('ft_rename_project')
 
