@@ -23,8 +23,10 @@ class ftFile():
 
 		if fileFound == 0:
 			fileFound = self.newFile(fileName, filePath)
-		
+			
+		fileList.reverse()
 		fileList.append(fileFound)
+		fileList.reverse()
 
 		return project
 
@@ -39,7 +41,8 @@ class ftFile():
 		return newFile
 
 	def getFiles(self, project):
-		print('')
+		result = project["fileList"]
+		return result
 
 	def deleteFiles(self, project):
 		project["fileList"] = []

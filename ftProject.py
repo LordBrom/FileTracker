@@ -8,16 +8,10 @@ from ftFile import ftFile
 
 class ftProject(ftFile):
 	def getProject(self, projectName):
-		print('test')
 
 		projects = self.getProjects()
 
-
-
-		print(projects)
-
 		for project in projects:
-			print(project)
 			if project["projectName"] == projectName:
 				return project
 
@@ -77,7 +71,8 @@ class ftProject(ftFile):
 
 		return newProject
 
-	def addFileToProject(self, projectName, fileName, filepath):
+	def addFileToProject(self, project, fileName, filepath):
+		projectName = project["projectName"]
 		ftProjectSettings = sublime.load_settings('ftProjects.sublime-settings')
 
 		if not ftProjectSettings.has('ftProjects'):
@@ -87,7 +82,7 @@ class ftProject(ftFile):
 		ftProjects = ftProjectSettings.get('ftProjects');
 
 		projectFound = 0
-
+		
 		for Project in list(ftProjects):
 			if Project["projectName"] == projectName:
 				projectFound = Project
