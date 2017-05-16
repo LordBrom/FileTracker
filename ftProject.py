@@ -4,7 +4,7 @@ import os.path
 import subprocess
 import functools
 import datetime
-from FileTracker.ftFile import ftFile
+from ftFile import ftFile
 
 class ftProject(ftFile):
 	def getProject(self, projectName):

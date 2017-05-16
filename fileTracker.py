@@ -4,7 +4,7 @@ import os.path
 import subprocess
 import functools
 import datetime
-from FileTracker.ftProject import ftProject
+from ftProject import ftProject
 
 sublime.FT_CURRENT_PROJECT = ""
 
@@ -67,10 +67,10 @@ class ftController(ftProject):
 
 class ftAddFileToProjectOnSave(sublime_plugin.EventListener, ftController):
 	def on_post_save(self, view):
-		windowDetails = sublime.active_window().extract_variables()
-		fileName = windowDetails["file_base_name"] + "." + windowDetails["file_extension"]
-		filePath = windowDetails["file"]
-		self.addFileToProject(self.getActiveProject(), fileName, filePath)
+		filepath = sublime.active_window().active_view().file_name()
+		filename = filepath[(filepath.rfind('\\') + 1):]
+
+		self.addFileToProject(self.getActiveProject(), filename, filepath)
 
 
 

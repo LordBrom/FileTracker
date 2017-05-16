@@ -40,7 +40,6 @@ class ftFile():
 
 	def getFiles(self, project):
 		print('')
-		
 
 	def deleteFiles(self, project):
 		project["fileList"] = []
@@ -72,3 +71,4 @@ class ftFile():
 			result.append(file[fileField])
 
 		return result
+
