@@ -159,7 +159,6 @@ class ftProject(ftFile):
 			return fileFieldList
 
 	def removeFileFromProject(self, project, filePath):
-		print(filePath)
 		projectName = project["projectName"]
 		ftProjectSettings = sublime.load_settings('ftProjects.sublime-settings')
 
@@ -181,7 +180,6 @@ class ftProject(ftFile):
 			# error: project not found :C
 			return
 		else:
-			print(filePath)
 			newProject = self.deleteFile(projectFound, filePath)
 
 		ftProjects.reverse()
@@ -190,3 +188,6 @@ class ftProject(ftFile):
 
 		ftProjectSettings.set("ftProjects", ftProjects)
 		sublime.save_settings('ftProjects.sublime-settings')
+
+	def checkFileInProject(self, project, filePath):
+		return self.containsFile(project, filePath)
