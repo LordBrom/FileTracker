@@ -74,12 +74,12 @@ class ftController(ftProject):
 
 class ftAddFileToProjectOnSave(sublime_plugin.EventListener, ftController):
 	def on_post_save(self, view):
-		filepath = sublime.active_window().active_view().file_name()
-		filename = filepath[(filepath.rfind('\\') + 1):]
+		filePath = sublime.active_window().active_view().file_name()
+		filename = filePath[(filePath.rfind('\\') + 1):]
 
 		activeProject = self.getActiveProject()
 
-		self.addFileToProject(activeProject, filename, filepath)
+		self.addFileToProject(activeProject, filename, filePath)
 
 
 
@@ -163,7 +163,6 @@ class ftListProjectFileListCommand(sublime_plugin.TextCommand, ftController):
 
 		sublime.active_window().show_quick_panel(filePathList, self.do_file_menu)
 
-
 	def do_file_menu(self, index):
 		self.selectedFileName = self.activeProject["fileList"][index]["fileName"]
 		self.selectedFilePath = self.activeProject["fileList"][index]["filePath"]
@@ -177,11 +176,14 @@ class ftListProjectFileListCommand(sublime_plugin.TextCommand, ftController):
 		elif self.menuItems[index] == "Open file":
 			self.open_file()
 		elif self.menuItems[index] == "Remove file...":
-			self.deleteFile(self.activeProject, self.selectedFilePath)
+			self.removeFileFromProject(self.activeProject, self.selectedFilePath)
+
 
 	def open_file(self):
 		if os.path.exists(self.selectedFilePath):
 			sublime.active_window().run_command('open_file', {"file": self.selectedFilePath} )
+
+
 
 
 class ftDeleteProjectCommand(sublime_plugin.TextCommand, ftController):

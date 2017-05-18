@@ -71,7 +71,7 @@ class ftProject(ftFile):
 
 		return newProject
 
-	def addFileToProject(self, project, fileName, filepath):
+	def addFileToProject(self, project, fileName, filePath):
 		projectName = project["projectName"]
 		ftProjectSettings = sublime.load_settings('ftProjects.sublime-settings')
 
@@ -92,7 +92,7 @@ class ftProject(ftFile):
 			# error: project not found :C
 			return
 		else:
-			newProject = self.addFile(projectFound, fileName, filepath)
+			newProject = self.addFile(projectFound, fileName, filePath)
 
 		ftProjects.reverse()
 		ftProjects.append(newProject)
@@ -157,3 +157,36 @@ class ftProject(ftFile):
 			fileFieldList = self.getFileFieldList(project, fileField)
 
 			return fileFieldList
+
+	def removeFileFromProject(self, project, filePath):
+		print(filePath)
+		projectName = project["projectName"]
+		ftProjectSettings = sublime.load_settings('ftProjects.sublime-settings')
+
+		if not ftProjectSettings.has('ftProjects'):
+			ftProjectSettings.set('ftProjects', [])
+			sublime.save_settings('ftProjects.sublime-settings')
+
+		ftProjects = ftProjectSettings.get('ftProjects', []);
+
+		projectFound = 0
+		
+		for Project in list(ftProjects):
+			if Project["projectName"] == projectName:
+				projectFound = Project
+				ftProjects.remove(Project)
+				break
+
+		if projectFound == 0:
+			# error: project not found :C
+			return
+		else:
+			print(filePath)
+			newProject = self.deleteFile(projectFound, filePath)
+
+		ftProjects.reverse()
+		ftProjects.append(newProject)
+		ftProjects.reverse()
+
+		ftProjectSettings.set("ftProjects", ftProjects)
+		sublime.save_settings('ftProjects.sublime-settings')
